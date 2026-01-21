@@ -8,9 +8,11 @@ vize ve final notlarından ortalama hesaplama dersten kalmıyor ve Geçme. hesab
  DNO > 39 (DERS BAŞARISIZ)
  39 < DNO < 50 (Şartlı geçebilirsin)
 
-Önemli Not!!!    Kurallar Konya Teknik Üniversitesi Önlisans şartlarına göre hazırlanmıştır.
+Önemli Not!!!    Kurallar Konya Teknik Üniversitesi Önlisans şartları varsayıladır. Final notu barajı için 30, 35 ve diğer olarak 3 seçenek vardır. diğer adımında istediğiniz baraj puanını seçebilirsiniz.
 Vibecoding ile geliştirilmiştir.
 
 Desteklenen Cihazlar:
 Samsung Galaxy A35 (Test edildi)
 Android 10 ve üstü Telefon ve Tabletler.
+
+
