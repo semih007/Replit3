@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   TextInput,
@@ -60,9 +60,25 @@ export default function CalculatorScreen() {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <HeaderButton onPress={() => navigation.navigate("About")}>
-          <Feather name="info" size={22} color={theme.text} />
-        </HeaderButton>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Pressable 
+            onPress={() => navigation.navigate("History")}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.7 : 1,
+              marginRight: 15
+            })}
+          >
+            <Feather name="list" size={22} color={theme.text} />
+          </Pressable>
+          <Pressable 
+            onPress={() => navigation.navigate("About")}
+            style={({ pressed }) => ({
+              opacity: pressed ? 0.7 : 1,
+            })}
+          >
+            <Feather name="info" size={22} color={theme.text} />
+          </Pressable>
+        </View>
       ),
     });
   }, [navigation, theme.text]);
@@ -136,12 +152,36 @@ export default function CalculatorScreen() {
       statusColor = colors.success;
     }
 
-    setResult({
+    const newResult = {
       average: Math.round(average * 100) / 100,
       status,
       statusText,
       statusColor,
-    });
+    };
+
+    setResult(newResult);
+
+    // Geçmişe kaydet
+    const saveToHistory = async () => {
+      try {
+        const historyData = await AsyncStorage.getItem("grade_history");
+        let history = historyData ? JSON.parse(historyData) : [];
+        const newItem = {
+          id: Date.now().toString(),
+          midterm: midtermGrade,
+          final: finalGrade,
+          average: newResult.average,
+          status: statusText,
+          statusColor: statusColor,
+          date: new Date().toLocaleString('tr-TR'),
+        };
+        history = [newItem, ...history].slice(0, 5); // Sadece son 5 işlem
+        await AsyncStorage.setItem("grade_history", JSON.stringify(history));
+      } catch (e) {
+        console.error("Save error", e);
+      }
+    };
+    saveToHistory();
 
     resultScale.value = withSequence(
       withSpring(1.05, { damping: 10 }),

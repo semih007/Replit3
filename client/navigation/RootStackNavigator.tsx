@@ -4,9 +4,12 @@ import CalculatorScreen from "@/screens/CalculatorScreen";
 import AboutScreen from "@/screens/AboutScreen";
 import { useScreenOptions } from "@/hooks/useScreenOptions";
 
+import HistoryScreen from "@/screens/HistoryScreen";
+
 export type RootStackParamList = {
   Calculator: undefined;
   About: undefined;
+  History: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,6 +31,13 @@ export default function RootStackNavigator() {
         component={AboutScreen}
         options={{
           headerTitle: "Hakkinda",
+        }}
+      />
+      <Stack.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          headerTitle: "Gecmis",
         }}
       />
     </Stack.Navigator>
