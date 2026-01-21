@@ -89,28 +89,30 @@ export default function CalculatorScreen() {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 8 }}>
           <Pressable 
             onPress={() => {
-                navigation.navigate("History");
+              console.log("Navigating to History");
+              navigation.push("History");
             }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
-              padding: 10,
+              padding: 12,
             })}
           >
-            <Feather name="list" size={22} color={theme.text} />
+            <Feather name="list" size={24} color={theme.text} />
           </Pressable>
           <Pressable 
             onPress={() => {
-                navigation.navigate("About");
+              console.log("Navigating to About");
+              navigation.push("About");
             }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
-              padding: 10,
+              padding: 12,
             })}
           >
-            <Feather name="info" size={22} color={theme.text} />
+            <Feather name="info" size={24} color={theme.text} />
           </Pressable>
         </View>
       ),
@@ -204,6 +206,7 @@ export default function CalculatorScreen() {
           id: Date.now().toString(),
           midterm: midtermGrade,
           final: finalGrade,
+          limit: showCustomLimit ? customLimit : finalLimit,
           average: newResult.average,
           status: statusText,
           statusColor: statusColor,

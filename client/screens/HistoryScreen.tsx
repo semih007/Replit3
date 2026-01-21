@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, ScrollView, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons";
 import { useTheme } from "@/hooks/useTheme";
@@ -14,16 +15,21 @@ interface HistoryItem {
   status: string;
   statusColor: string;
   date: string;
+  limit: string;
 }
 
 export default function HistoryScreen() {
+  const navigation = useNavigation();
   const { theme, isDark } = useTheme();
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const colors = isDark ? Colors.dark : Colors.light;
 
   useEffect(() => {
-    loadHistory();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadHistory();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   const loadHistory = async () => {
     try {
@@ -73,6 +79,7 @@ export default function HistoryScreen() {
                   <View style={styles.gradeInfo}>
                     <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>Vize: {item.midterm}</ThemedText>
                     <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>Final: {item.final}</ThemedText>
+                    <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>Baraj: {item.limit || "30"}</ThemedText>
                   </View>
                   <View style={styles.averageInfo}>
                     <ThemedText style={styles.averageValue}>{item.average.toFixed(2)}</ThemedText>
