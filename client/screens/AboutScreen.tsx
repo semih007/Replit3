@@ -63,10 +63,32 @@ export default function AboutScreen() {
           </View>
           <View style={styles.formulaBox}>
             <ThemedText style={[styles.formula, { color: theme.text }]}>
-              (Vize x %40) + (Final x %60)
+              Vize %40 + Final/Büt %60 = Ortalama
             </ThemedText>
           </View>
-          <ThemedText style={[styles.sectionText, { color: colors.textSecondary, marginTop: Spacing.md }]}>
+          
+          <View style={styles.rulesContainer}>
+            <View style={styles.ruleItem}>
+              <View style={[styles.ruleBadge, { backgroundColor: Colors.common.success }]} />
+              <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
+                Ortalama > 49: Geçtin
+              </ThemedText>
+            </View>
+            <View style={styles.ruleItem}>
+              <View style={[styles.ruleBadge, { backgroundColor: Colors.common.warning }]} />
+              <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
+                49 > Ortalama > 39: Şartlı Geçtin
+              </ThemedText>
+            </View>
+            <View style={styles.ruleItem}>
+              <View style={[styles.ruleBadge, { backgroundColor: Colors.common.error }]} />
+              <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
+                Final Notu < Final Barajın: Kaldın
+              </ThemedText>
+            </View>
+          </View>
+
+          <ThemedText style={[styles.sectionNote, { color: colors.textSecondary }]}>
             Uygulama, seçtiğiniz final barajını öncelikli tutar. Final notunuz barajın altındaysa ortalamanız ne olursa olsun ders başarısız sayılır.
           </ThemedText>
         </View>
@@ -151,6 +173,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
     textAlign: "center",
+  },
+  rulesContainer: {
+    marginTop: Spacing.lg,
+    gap: Spacing.sm,
+  },
+  ruleItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ruleBadge: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginRight: Spacing.sm,
+  },
+  ruleText: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  sectionNote: {
+    fontSize: 13,
+    lineHeight: 18,
+    marginTop: Spacing.lg,
+    fontStyle: 'italic',
   },
   contactButton: {
     marginTop: Spacing.lg,
