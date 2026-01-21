@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   TextInput,
@@ -57,6 +58,24 @@ export default function CalculatorScreen() {
 
   const colors = isDark ? Colors.dark : Colors.light;
 
+  useEffect(() => {
+    const loadUserDefaultLimit = async () => {
+      try {
+        const savedLimit = await AsyncStorage.getItem("user_default_limit");
+        if (savedLimit) {
+          setFinalLimit(savedLimit);
+          if (savedLimit !== "30" && savedLimit !== "35") {
+            setCustomLimit(savedLimit);
+            setShowCustomLimit(true);
+          }
+        }
+      } catch (e) {
+        console.error("Error loading default limit", e);
+      }
+    };
+    loadUserDefaultLimit();
+  }, []);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -102,7 +121,7 @@ export default function CalculatorScreen() {
     if (showCustomLimit) {
       limitValue = parseFloat(customLimit) || 0;
     } else {
-      limitValue = parseFloat(finalLimit) || 0;
+      limitValue = parseFloat(finalLimit) || 30;
     }
 
     let hasError = false;
@@ -152,7 +171,7 @@ export default function CalculatorScreen() {
       statusColor = colors.success;
     }
 
-    const newResult = {
+    const newResult: CalculationResult = {
       average: Math.round(average * 100) / 100,
       status,
       statusText,
@@ -203,9 +222,6 @@ export default function CalculatorScreen() {
     setResult(null);
     setMidtermError("");
     setFinalError("");
-    setFinalLimit("30");
-    setCustomLimit("");
-    setShowCustomLimit(false);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   }, []);
 
@@ -323,6 +339,7 @@ export default function CalculatorScreen() {
                   } else {
                     setFinalLimit(val);
                     setShowCustomLimit(false);
+                    saveUserDefaultLimit(val);
                   }
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 }}
@@ -343,22 +360,30 @@ export default function CalculatorScreen() {
             ))}
           </View>
           {showCustomLimit && (
-            <TextInput
-              style={[
-                styles.input,
-                {
-                  backgroundColor: colors.backgroundDefault,
-                  borderColor: colors.inputBorder,
-                  color: theme.text,
-                  marginTop: Spacing.sm,
-                },
-              ]}
-              value={customLimit}
-              onChangeText={setCustomLimit}
-              placeholder="Baraj notunu girin (örn: 40)"
-              placeholderTextColor={colors.textSecondary}
-              keyboardType="decimal-pad"
-            />
+            <View>
+              <TextInput
+                style={[
+                  styles.input,
+                  {
+                    backgroundColor: colors.backgroundDefault,
+                    borderColor: colors.inputBorder,
+                    color: theme.text,
+                    marginTop: Spacing.sm,
+                  },
+                ]}
+                value={customLimit}
+                onChangeText={setCustomLimit}
+                placeholder="Baraj notunu girin (örn: 40)"
+                placeholderTextColor={colors.textSecondary}
+                keyboardType="decimal-pad"
+              />
+              <Pressable 
+                onPress={() => saveUserDefaultLimit(customLimit)}
+                style={{ marginTop: 8, alignSelf: 'flex-end' }}
+              >
+                <ThemedText style={{ color: colors.link, fontSize: 12 }}>Bu barajı varsayılan yap</ThemedText>
+              </Pressable>
+            </View>
           )}
         </View>
       </Animated.View>
