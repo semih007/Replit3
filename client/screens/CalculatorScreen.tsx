@@ -76,23 +76,38 @@ export default function CalculatorScreen() {
     loadUserDefaultLimit();
   }, []);
 
+  const saveUserDefaultLimit = async (limit: string) => {
+    if (!limit || limit.trim() === "") return;
+    try {
+      await AsyncStorage.setItem("user_default_limit", limit);
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    } catch (e) {
+      console.error("Error saving default limit", e);
+    }
+  };
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}>
           <Pressable 
-            onPress={() => navigation.navigate("History")}
+            onPress={() => {
+                navigation.navigate("History");
+            }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
-              marginRight: 15
+              padding: 10,
             })}
           >
             <Feather name="list" size={22} color={theme.text} />
           </Pressable>
           <Pressable 
-            onPress={() => navigation.navigate("About")}
+            onPress={() => {
+                navigation.navigate("About");
+            }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
+              padding: 10,
             })}
           >
             <Feather name="info" size={22} color={theme.text} />
@@ -100,7 +115,7 @@ export default function CalculatorScreen() {
         </View>
       ),
     });
-  }, [navigation, theme.text]);
+  }, [navigation, theme.text, colors]);
 
   const validateGrade = (value: string): number | null => {
     if (value === "") return null;
