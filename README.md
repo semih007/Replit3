@@ -18,3 +18,7 @@ Samsung Galaxy A9+ (Test edildi)
 Android 10 ve üstü Telefon ve Tabletler.
 
 
+HEDEFLER:
+KONYA TEKNİK ÜNİVERİSTESİ ne uyumlu Harf not sistemi kurulumu.
+Yapılan Son 10 hesaplamanın geçmişte saklama. 
+Hakkında kısmının tamamlanması.
