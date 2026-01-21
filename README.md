@@ -13,6 +13,8 @@ Vibecoding ile geliştirilmiştir.
 
 Desteklenen Cihazlar:
 Samsung Galaxy A35 (Test edildi)
+Samsung Galazy A25 (Test edildi)
+Samsung Galaxy A9+ (Test edildi)
 Android 10 ve üstü Telefon ve Tabletler.
 
 
