@@ -83,7 +83,7 @@ export default function AboutScreen() {
             <View style={styles.ruleItem}>
               <View style={[styles.ruleBadge, { backgroundColor: Colors.common.error }]} />
               <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
-                Final Notu < Final Barajın: Kaldın
+                Final Notu &lt; Final Barajın: Kaldın
               </ThemedText>
             </View>
           </View>
