@@ -21,6 +21,7 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.semih007.UniversiteNotHesaplayici",
       "minSdkVersion": 29,
+      "targetSdkVersion": 35,
       "permissions": []
     },
     "web": {
