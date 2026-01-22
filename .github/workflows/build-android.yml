@@ -1,4 +1,4 @@
-name: Build Android App Bundle
+name: Build Android APK
 
 on:
   push:
@@ -38,26 +38,18 @@ jobs:
         run: npm ci
 
       - name: Install Expo CLI
-        run: npm install -g @expo/cli
+        run: npm install -g expo-cli @expo/cli
 
       - name: Prebuild Android
         run: npx expo prebuild --platform android --clean
 
-      - name: Decode Keystore
-        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
-
-      - name: Build AAB
+      - name: Build APK
         working-directory: android
-        run: ./gradlew bundleRelease
-        env:
-          MYAPP_RELEASE_STORE_FILE: release.keystore
-          MYAPP_RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          MYAPP_RELEASE_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          MYAPP_RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: ./gradlew assembleRelease
 
-      - name: Upload AAB
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: not-hesaplama-aab
-          path: android/app/build/outputs/bundle/release/*.aab
+          name: not-hesaplama-apk
+          path: android/app/build/outputs/apk/release/*.apk
           retention-days: 30
