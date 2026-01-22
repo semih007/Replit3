@@ -94,25 +94,25 @@ export default function CalculatorScreen() {
             onPress={() => {
               navigation.navigate("History");
             }}
-            hitSlop={15}
+            hitSlop={25}
             style={({ pressed }) => [
               styles.headerButton,
               { opacity: pressed ? 0.5 : 1 }
             ]}
           >
-            <Feather name="list" size={24} color={theme.text} />
+            <Feather name="list" size={28} color={theme.text} />
           </Pressable>
           <Pressable 
             onPress={() => {
               navigation.navigate("About");
             }}
-            hitSlop={15}
+            hitSlop={25}
             style={({ pressed }) => [
               styles.headerButton,
               { opacity: pressed ? 0.5 : 1 }
             ]}
           >
-            <Feather name="info" size={24} color={theme.text} />
+            <Feather name="info" size={28} color={theme.text} />
           </Pressable>
         </View>
       ),
@@ -534,11 +534,11 @@ const styles = StyleSheet.create({
   headerRightContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 8,
+    marginRight: 4,
   },
   headerButton: {
-    padding: 8,
-    marginLeft: 4,
+    padding: 12,
+    marginLeft: 8,
   },
   inputGroup: {
     marginBottom: Spacing.xl,
