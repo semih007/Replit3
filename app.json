@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.nothesaplama.app"
+      "bundleIdentifier": "com.semih007.UniversiteNotHesaplayici"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +19,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.nothesaplama.app",
+      "package": "com.semih007.UniversiteNotHesaplayici",
       "minSdkVersion": 29,
       "permissions": []
     },
