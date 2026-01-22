@@ -92,6 +92,7 @@ export default function CalculatorScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 8 }}>
           <Pressable 
             onPress={() => {
+              console.log("Navigating to History");
               navigation.navigate("History");
             }}
             style={({ pressed }) => ({
@@ -103,6 +104,7 @@ export default function CalculatorScreen() {
           </Pressable>
           <Pressable 
             onPress={() => {
+              console.log("Navigating to About");
               navigation.navigate("About");
             }}
             style={({ pressed }) => ({
