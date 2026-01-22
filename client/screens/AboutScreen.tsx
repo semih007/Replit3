@@ -29,7 +29,7 @@ export default function AboutScreen() {
         <View style={[styles.headerSection, { marginTop: 80, marginBottom: Spacing.md }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
-            Sürüm 2.0.0
+            Sürüm 2.1.0
           </ThemedText>
         </View>
       </Animated.View>
