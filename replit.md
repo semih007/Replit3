@@ -14,6 +14,15 @@ This is a Turkish university grade calculator mobile application built with Reac
 
 The app uses color-coded results (green=pass, yellow=conditional, red=fail) for instant visual feedback.
 
+### GitHub Actions Workflow
+- **File**: `.github/workflows/build-android.yml`
+- **Purpose**: Automatically builds and signs an Android App Bundle (AAB) on every push to main/master.
+- **Required Secrets**:
+  - `ANDROID_KEYSTORE_BASE64`: The base64 encoded content of your `.jks` or `.keystore` file.
+  - `ANDROID_KEY_ALIAS`: Your key alias.
+  - `ANDROID_KEYSTORE_PASSWORD`: Your keystore password.
+  - `ANDROID_KEY_PASSWORD`: Your key password.
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
