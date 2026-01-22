@@ -26,7 +26,7 @@ export default function AboutScreen() {
       showsVerticalScrollIndicator={false}
     >
       <Animated.View entering={FadeInDown.delay(100).duration(400)}>
-        <View style={[styles.headerSection, { marginTop: 80, marginBottom: Spacing.md }]}>
+        <View style={[styles.headerSection, { marginTop: 20, marginBottom: 10 }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
             Sürüm 2.1.0
@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
   },
   sectionCard: {
     borderRadius: BorderRadius.md,
-    padding: Spacing.lg,
-    marginBottom: Spacing.md,
+    padding: 12,
+    marginBottom: 8,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -147,31 +147,31 @@ const styles = StyleSheet.create({
   sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: Spacing.md,
+    marginBottom: 4,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "600",
     marginLeft: Spacing.sm,
   },
   sectionText: {
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 18,
   },
   formulaBox: {
     backgroundColor: "rgba(0, 0, 0, 0.05)",
     borderRadius: BorderRadius.xs,
-    padding: Spacing.md,
-    marginTop: Spacing.sm,
+    padding: 6,
+    marginTop: 4,
   },
   formula: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "700",
     textAlign: "center",
   },
   rulesContainer: {
-    marginTop: Spacing.lg,
-    gap: Spacing.sm,
+    marginTop: 8,
+    gap: 4,
   },
   ruleItem: {
     flexDirection: 'row',
