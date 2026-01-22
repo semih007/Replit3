@@ -92,8 +92,7 @@ export default function CalculatorScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 8 }}>
           <Pressable 
             onPress={() => {
-              console.log("Navigating to History");
-              navigation.push("History");
+              navigation.navigate("History");
             }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
@@ -104,8 +103,7 @@ export default function CalculatorScreen() {
           </Pressable>
           <Pressable 
             onPress={() => {
-              console.log("Navigating to About");
-              navigation.push("About");
+              navigation.navigate("About");
             }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
@@ -212,7 +210,7 @@ export default function CalculatorScreen() {
           statusColor: statusColor,
           date: new Date().toLocaleString('tr-TR'),
         };
-        history = [newItem, ...history].slice(0, 5); // Sadece son 5 işlem
+        history = [newItem, ...history].slice(0, 10); // Sadece son 10 işlem
         await AsyncStorage.setItem("grade_history", JSON.stringify(history));
       } catch (e) {
         console.error("Save error", e);

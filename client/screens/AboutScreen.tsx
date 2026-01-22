@@ -69,21 +69,21 @@ export default function AboutScreen() {
           
           <View style={styles.rulesContainer}>
             <View style={styles.ruleItem}>
-              <View style={[styles.ruleBadge, { backgroundColor: Colors.common.success }]} />
+              <View style={[styles.ruleBadge, { backgroundColor: colors.success }]} />
               <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
-                Ortalama > 49: Geçtin
+                Ortalama {">"} 49: Geçtin
               </ThemedText>
             </View>
             <View style={styles.ruleItem}>
-              <View style={[styles.ruleBadge, { backgroundColor: Colors.common.warning }]} />
+              <View style={[styles.ruleBadge, { backgroundColor: colors.warning }]} />
               <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
-                49 > Ortalama > 39: Şartlı Geçtin
+                49 {">"} Ortalama {">"} 39: Şartlı Geçtin
               </ThemedText>
             </View>
             <View style={styles.ruleItem}>
-              <View style={[styles.ruleBadge, { backgroundColor: Colors.common.error }]} />
+              <View style={[styles.ruleBadge, { backgroundColor: colors.error }]} />
               <ThemedText style={[styles.ruleText, { color: colors.textSecondary }]}>
-                Final Notu &lt; Final Barajın: Kaldın
+                Final Notu {"<"} Final Barajın: Kaldın
               </ThemedText>
             </View>
           </View>
@@ -110,6 +110,14 @@ export default function AboutScreen() {
             style={({ pressed }) => [styles.contactButton, { backgroundColor: colors.link, opacity: pressed ? 0.8 : 1 }]}
           >
             <ThemedText style={styles.contactButtonText}>E-posta Gönder</ThemedText>
+          </Pressable>
+
+          <Pressable 
+            onPress={() => Linking.openURL('https://github.com/semih007/Replit3')}
+            style={({ pressed }) => [styles.contactButton, { backgroundColor: '#333', opacity: pressed ? 0.8 : 1, marginTop: Spacing.sm, flexDirection: 'row' }]}
+          >
+            <Feather name="github" size={18} color="#FFFFFF" style={{ marginRight: 8 }} />
+            <ThemedText style={styles.contactButtonText}>GitHub Deposu</ThemedText>
           </Pressable>
         </View>
       </Animated.View>
@@ -203,6 +211,7 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     borderRadius: BorderRadius.sm,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   contactButtonText: {
     color: '#FFFFFF',
