@@ -20,7 +20,8 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.nothesaplama.app",
-      "minSdkVersion": 29
+      "minSdkVersion": 29,
+      "permissions": []
     },
     "web": {
       "output": "single",
