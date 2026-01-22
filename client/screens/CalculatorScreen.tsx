@@ -538,7 +538,7 @@ const styles = StyleSheet.create({
   },
   headerButton: {
     padding: 12,
-    marginLeft: 8,
+    marginLeft: 16,
   },
   inputGroup: {
     marginBottom: Spacing.xl,
