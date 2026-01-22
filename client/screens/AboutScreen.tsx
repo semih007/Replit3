@@ -27,11 +27,6 @@ export default function AboutScreen() {
     >
       <Animated.View entering={FadeInDown.delay(100).duration(400)}>
         <View style={styles.headerSection}>
-          <Image
-            source={require("../../assets/images/icon.png")}
-            style={styles.appIcon}
-            resizeMode="contain"
-          />
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
             Sürüm 2.0.0
