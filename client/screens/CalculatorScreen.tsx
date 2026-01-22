@@ -89,37 +89,35 @@ export default function CalculatorScreen() {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 8, zIndex: 999 }}>
+        <View style={styles.headerRightContainer}>
           <Pressable 
             onPress={() => {
-              console.log("Navigating to History");
               navigation.navigate("History");
             }}
-            hitSlop={{ top: 20, bottom: 20, left: 10, right: 10 }}
-            style={({ pressed }) => ({
-              opacity: pressed ? 0.7 : 1,
-              padding: 12,
-            })}
+            hitSlop={15}
+            style={({ pressed }) => [
+              styles.headerButton,
+              { opacity: pressed ? 0.5 : 1 }
+            ]}
           >
             <Feather name="list" size={24} color={theme.text} />
           </Pressable>
           <Pressable 
             onPress={() => {
-              console.log("Navigating to About");
               navigation.navigate("About");
             }}
-            hitSlop={{ top: 20, bottom: 20, left: 10, right: 20 }}
-            style={({ pressed }) => ({
-              opacity: pressed ? 0.7 : 1,
-              padding: 12,
-            })}
+            hitSlop={15}
+            style={({ pressed }) => [
+              styles.headerButton,
+              { opacity: pressed ? 0.5 : 1 }
+            ]}
           >
             <Feather name="info" size={24} color={theme.text} />
           </Pressable>
         </View>
       ),
     });
-  }, [navigation, theme.text, colors]);
+  }, [navigation, theme.text]);
 
   const validateGrade = (value: string): number | null => {
     if (value === "") return null;
@@ -532,6 +530,15 @@ export default function CalculatorScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  headerRightContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 8,
+  },
+  headerButton: {
+    padding: 8,
+    marginLeft: 4,
   },
   inputGroup: {
     marginBottom: Spacing.xl,
