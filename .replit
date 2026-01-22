@@ -1,8 +1,9 @@
 entrypoint = "README.md"
-modules = ["nodejs-20", "web"]
+modules = ["nodejs-20", "python-3.11", "web"]
 
 [nix]
 channel = "stable-25_05"
+packages = ["zulu23"]
 
 [deployment]
 deploymentTarget = "cloudrun"
@@ -20,6 +21,10 @@ externalPort = 80
 [[ports]]
 localPort = 5001
 externalPort = 3001
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
 
 [env]
 PORT = "5000"
