@@ -89,12 +89,13 @@ export default function CalculatorScreen() {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 8 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 8, zIndex: 999 }}>
           <Pressable 
             onPress={() => {
               console.log("Navigating to History");
               navigation.navigate("History");
             }}
+            hitSlop={{ top: 20, bottom: 20, left: 10, right: 10 }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
               padding: 12,
@@ -107,6 +108,7 @@ export default function CalculatorScreen() {
               console.log("Navigating to About");
               navigation.navigate("About");
             }}
+            hitSlop={{ top: 20, bottom: 20, left: 10, right: 20 }}
             style={({ pressed }) => ({
               opacity: pressed ? 0.7 : 1,
               padding: 12,
