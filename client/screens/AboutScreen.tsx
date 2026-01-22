@@ -26,7 +26,7 @@ export default function AboutScreen() {
       showsVerticalScrollIndicator={false}
     >
       <Animated.View entering={FadeInDown.delay(100).duration(400)}>
-        <View style={[styles.headerSection, { marginTop: Spacing.xl }]}>
+        <View style={[styles.headerSection, { marginTop: Spacing.xl, gap: Spacing.xs }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
             Sürüm 2.0.0
