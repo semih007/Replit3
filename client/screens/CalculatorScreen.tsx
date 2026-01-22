@@ -471,58 +471,6 @@ export default function CalculatorScreen() {
         </Animated.View>
       ) : null}
 
-      <Animated.View
-        entering={FadeInDown.delay(500).duration(400)}
-        style={styles.infoSection}
-      >
-        <View
-          style={[
-            styles.infoCard,
-            { backgroundColor: colors.backgroundDefault },
-          ]}
-        >
-          <ThemedText style={[styles.infoTitle, { color: theme.text }]}>
-            Hesaplama Formulu
-          </ThemedText>
-          <ThemedText
-            style={[styles.infoText, { color: colors.textSecondary }]}
-          >
-            Ortalama = (Vize x 0.40) + (Final x 0.60)
-          </ThemedText>
-          <View style={styles.infoList}>
-            <View style={styles.infoItem}>
-              <View
-                style={[styles.statusDot, { backgroundColor: colors.success }]}
-              />
-              <ThemedText
-                style={[styles.infoItemText, { color: colors.textSecondary }]}
-              >
-                50 ve uzeri: Gectin
-              </ThemedText>
-            </View>
-            <View style={styles.infoItem}>
-              <View
-                style={[styles.statusDot, { backgroundColor: colors.warning }]}
-              />
-              <ThemedText
-                style={[styles.infoItemText, { color: colors.textSecondary }]}
-              >
-                40-49 arasi: Sartli Gectin
-              </ThemedText>
-            </View>
-            <View style={styles.infoItem}>
-              <View
-                style={[styles.statusDot, { backgroundColor: colors.error }]}
-              />
-              <ThemedText
-                style={[styles.infoItemText, { color: colors.textSecondary }]}
-              >
-                40'in altinda veya Final 30'un altinda: Kaldin
-              </ThemedText>
-            </View>
-          </View>
-        </View>
-      </Animated.View>
     </ScrollView>
   );
 }
