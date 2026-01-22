@@ -34,7 +34,7 @@ export default function AboutScreen() {
           />
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
-            Sürüm 1.0.0
+            Sürüm 2.0.0
           </ThemedText>
         </View>
       </Animated.View>
