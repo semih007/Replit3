@@ -97,24 +97,17 @@ export default function AboutScreen() {
       <Animated.View entering={FadeInDown.delay(400).duration(400)}>
         <View style={[styles.sectionCard, { backgroundColor: colors.backgroundDefault }]}>
           <View style={styles.sectionHeader}>
-            <Feather name="mail" size={20} color={colors.link} />
+            <Feather name="github" size={20} color={colors.link} />
             <ThemedText style={[styles.sectionTitle, { color: theme.text }]}>
-              İletişim
+              Kaynak Kodu
             </ThemedText>
           </View>
           <ThemedText style={[styles.sectionText, { color: colors.textSecondary }]}>
-            Geri bildirimleriniz ve sorularınız için iletişime geçebilirsiniz.
+            Uygulamanın kaynak kodlarına GitHub üzerinden ulaşabilirsiniz.
           </ThemedText>
           <Pressable 
-            onPress={() => Linking.openURL('mailto:destek@nothesaplama.com')}
-            style={({ pressed }) => [styles.contactButton, { backgroundColor: colors.link, opacity: pressed ? 0.8 : 1 }]}
-          >
-            <ThemedText style={styles.contactButtonText}>E-posta Gönder</ThemedText>
-          </Pressable>
-
-          <Pressable 
             onPress={() => Linking.openURL('https://github.com/semih007/Replit3')}
-            style={({ pressed }) => [styles.contactButton, { backgroundColor: '#333', opacity: pressed ? 0.8 : 1, marginTop: Spacing.sm, flexDirection: 'row' }]}
+            style={({ pressed }) => [styles.contactButton, { backgroundColor: '#333', opacity: pressed ? 0.8 : 1, marginTop: Spacing.lg, flexDirection: 'row' }]}
           >
             <Feather name="github" size={18} color="#FFFFFF" style={{ marginRight: 8 }} />
             <ThemedText style={styles.contactButtonText}>GitHub Deposu</ThemedText>
