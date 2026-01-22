@@ -19,14 +19,14 @@ export default function AboutScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.backgroundRoot }]}
       contentContainerStyle={{
-        paddingTop: Spacing.xl,
-        paddingBottom: insets.bottom + Spacing["3xl"],
+        paddingTop: Spacing.md,
+        paddingBottom: insets.bottom + Spacing.xl,
         paddingHorizontal: Spacing.lg,
       }}
       showsVerticalScrollIndicator={false}
     >
       <Animated.View entering={FadeInDown.delay(100).duration(400)}>
-        <View style={[styles.headerSection, { marginTop: 100, gap: 10 }]}>
+        <View style={[styles.headerSection, { marginBottom: Spacing.lg }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
             Sürüm 2.0.0
@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
   },
   headerSection: {
     alignItems: "center",
-    marginBottom: Spacing["2xl"],
   },
   appIcon: {
     width: 100,
@@ -137,8 +136,8 @@ const styles = StyleSheet.create({
   },
   sectionCard: {
     borderRadius: BorderRadius.md,
-    padding: Spacing.xl,
-    marginBottom: Spacing.lg,
+    padding: Spacing.lg,
+    marginBottom: Spacing.md,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -195,8 +194,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   contactButton: {
-    marginTop: Spacing.lg,
-    padding: Spacing.md,
+    marginTop: Spacing.md,
+    padding: Spacing.sm,
     borderRadius: BorderRadius.sm,
     alignItems: 'center',
     justifyContent: 'center',
