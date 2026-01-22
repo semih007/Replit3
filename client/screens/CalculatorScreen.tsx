@@ -539,6 +539,10 @@ const styles = StyleSheet.create({
   headerButton: {
     padding: 12,
     marginLeft: 16,
+    minWidth: 48,
+    minHeight: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inputGroup: {
     marginBottom: Spacing.xl,
