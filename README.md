@@ -1,8 +1,8 @@
-vize ve final notlarından ortalama hesaplama dersten kalmıyor ve Geçme. hesabı.
+vize ve final notlarından ortalama hesaplama dersten başarısız ve başarılı hesaplama aracı.
 
  (vize×%40) + (final×%60) = ders notu ortalaması (DNO)
 
- final notu > 30 (Geçme şartı)
+ final notu > 30 (Önlisans)/ 35 (Lisans) (Geçme şartı)
 
  DNO > 49 (DİREKT GEÇER)
  DNO > 39 (DERS BAŞARISIZ)
@@ -13,7 +13,7 @@ Vibecoding ile geliştirilmiştir.
 
 Desteklenen Cihazlar:
 Samsung Galaxy A35 (Test edildi)
-Samsung Galazy A25 (Test edildi)
+Samsung Galazy A15 (Test edildi)
 Samsung Galaxy A9+ (Test edildi)
 Android 10 ve üstü Telefon ve Tabletler.
 
@@ -22,3 +22,5 @@ HEDEFLER:
 KONYA TEKNİK ÜNİVERİSTESİ ne uyumlu Harf not sistemi kurulumu.
 Yapılan Son 10 hesaplamanın geçmişte saklama. 
 Hakkında kısmının tamamlanması.
+
+GOOGLE PLAY DEVOLOPER HESABI İÇİN TEK SEFERLİK 25 USD İSTEDİĞİ İÇİN PLAY STORA ÇIKMAYACAK.
