@@ -25,7 +25,7 @@ export default function AboutScreen() {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Animated.View entering={FadeInDown.delay(100).duration(400)}>
+      <Animated.View entering={FadeInDown.delay(100).duration(400)} style={{ zIndex: 10 }}>
         <View style={[styles.headerSection, { marginTop: 20, marginBottom: 10 }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
