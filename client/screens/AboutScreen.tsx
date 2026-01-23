@@ -16,23 +16,23 @@ export default function AboutScreen() {
   const colors = isDark ? Colors.dark : Colors.light;
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingTop: 20,
-          paddingBottom: insets.bottom + Spacing.xl,
-          paddingHorizontal: Spacing.lg,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        <Animated.View entering={FadeInDown.delay(100).duration(400)}>
-          <View style={[styles.headerSection, { marginBottom: 10 }]}>
-            <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
-            <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
-              Sürüm 2.1.0
-            </ThemedText>
-          </View>
-        </Animated.View>
+    <ScrollView
+      style={[styles.container, { backgroundColor: theme.backgroundRoot }]}
+      contentContainerStyle={{
+        paddingTop: 60,
+        paddingBottom: insets.bottom + Spacing.xl,
+        paddingHorizontal: Spacing.lg,
+      }}
+      showsVerticalScrollIndicator={false}
+    >
+      <Animated.View entering={FadeInDown.delay(100).duration(400)}>
+        <View style={[styles.headerSection, { marginBottom: 20 }]}>
+          <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
+          <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
+            Sürüm 2.1.0
+          </ThemedText>
+        </View>
+      </Animated.View>
 
       <Animated.View entering={FadeInDown.delay(200).duration(400)}>
         <View style={[styles.sectionCard, { backgroundColor: colors.backgroundDefault }]}>
@@ -110,7 +110,6 @@ export default function AboutScreen() {
         </View>
       </Animated.View>
     </ScrollView>
-    </View>
   );
 }
 
