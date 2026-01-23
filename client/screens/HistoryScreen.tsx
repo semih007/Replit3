@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, StyleSheet, ScrollView, Pressable, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Feather } from "@expo/vector-icons";
@@ -52,7 +52,7 @@ export default function HistoryScreen() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {history.length === 0 ? (
           <View style={styles.emptyContainer}>
@@ -92,15 +92,17 @@ export default function HistoryScreen() {
         )}
       </ScrollView>
       {history.length > 0 && (
-        <Pressable 
-          onPress={clearHistory}
-          style={[styles.clearButton, { backgroundColor: colors.error }]}
-        >
-          <Feather name="trash-2" size={20} color="#FFFFFF" />
-          <ThemedText style={styles.clearButtonText}>Geçmişi Temizle</ThemedText>
-        </Pressable>
+        <View style={styles.buttonContainer}>
+          <Pressable 
+            onPress={clearHistory}
+            style={[styles.clearButton, { backgroundColor: colors.error }]}
+          >
+            <Feather name="trash-2" size={20} color="#FFFFFF" />
+            <ThemedText style={styles.clearButtonText}>Geçmişi Temizle</ThemedText>
+          </Pressable>
+        </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -176,10 +178,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: Spacing.lg,
     padding: Spacing.md,
     borderRadius: BorderRadius.sm,
     gap: 8,
+  },
+  buttonContainer: {
+    padding: Spacing.lg,
+    paddingBottom: 20,
   },
   clearButtonText: {
     color: '#FFFFFF',
