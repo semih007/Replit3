@@ -115,22 +115,22 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: Spacing.lg,
-    paddingTop: 60,
+    paddingTop: 50,
     paddingBottom: 20,
   },
   emptyContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
+    marginTop: 80,
   },
   emptyText: {
-    marginTop: Spacing.md,
-    fontSize: 16,
+    marginTop: Spacing.sm,
+    fontSize: 15,
   },
   historyCard: {
     flexDirection: 'row',
-    borderRadius: BorderRadius.sm,
-    marginBottom: Spacing.md,
+    borderRadius: BorderRadius.xs,
+    marginBottom: 8,
     overflow: 'hidden',
     elevation: 2,
     shadowColor: '#000',
@@ -139,24 +139,24 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
   },
   statusIndicator: {
-    width: 6,
+    width: 4,
   },
   cardContent: {
     flex: 1,
-    padding: Spacing.md,
+    padding: 10,
   },
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: Spacing.sm,
+    marginBottom: 4,
   },
   statusLabel: {
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 13,
   },
   dateText: {
-    fontSize: 12,
+    fontSize: 11,
   },
   cardBody: {
     flexDirection: 'row',
@@ -164,35 +164,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gradeInfo: {
-    gap: 4,
+    gap: 2,
   },
   gradeLabel: {
-    fontSize: 14,
+    fontSize: 13,
   },
   averageInfo: {
     alignItems: 'center',
   },
   averageValue: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   averageLabel: {
-    fontSize: 10,
+    fontSize: 9,
   },
   clearButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: Spacing.md,
-    borderRadius: BorderRadius.sm,
+    padding: 10,
+    borderRadius: BorderRadius.xs,
     gap: 8,
   },
   buttonContainer: {
-    padding: Spacing.lg,
-    paddingBottom: 20,
+    padding: Spacing.md,
+    paddingBottom: 15,
   },
   clearButtonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
+    fontSize: 14,
   }
 });
