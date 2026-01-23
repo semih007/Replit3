@@ -48,7 +48,7 @@ jobs:
         run: |
           echo $ANDROID_KEYSTORE_BASE64 | base64 -d > app/semih007.keystore
           ./gradlew assembleRelease \
-            -Pandroid.injected.signing.store.file=semih007.keystore \
+            -Pandroid.injected.signing.store.file=$(pwd)/app/semih007.keystore \
             -Pandroid.injected.signing.store.password=$ANDROID_KEYSTORE_PASSWORD \
             -Pandroid.injected.signing.key.alias=$ANDROID_KEY_ALIAS \
             -Pandroid.injected.signing.key.password=$ANDROID_KEY_PASSWORD
