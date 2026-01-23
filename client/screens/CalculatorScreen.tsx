@@ -94,7 +94,7 @@ export default function CalculatorScreen() {
             onPress={() => {
               navigation.navigate("History");
             }}
-            hitSlop={{ top: 25, bottom: 25, left: 20, right: 10 }}
+            hitSlop={{ top: 20, bottom: 30, left: 30, right: 1.5 }}
             style={({ pressed }) => [
               styles.headerButton,
               { opacity: pressed ? 0.5 : 1 }
@@ -106,7 +106,7 @@ export default function CalculatorScreen() {
             onPress={() => {
               navigation.navigate("About");
             }}
-            hitSlop={{ top: 25, bottom: 25, left: 10, right: 20 }}
+            hitSlop={{ top: 20, bottom: 20, left: 1.5, right: 30 }}
             style={({ pressed }) => [
               styles.headerButton,
               { opacity: pressed ? 0.5 : 1 }
