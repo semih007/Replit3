@@ -53,7 +53,10 @@ export default function HistoryScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
         {history.length === 0 ? (
           <View style={styles.emptyContainer}>
             <Feather name="list" size={48} color={colors.textSecondary} />
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: Spacing.lg,
+    paddingTop: 10,
   },
   emptyContainer: {
     alignItems: 'center',
