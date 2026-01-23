@@ -43,13 +43,26 @@ jobs:
       - name: Prebuild Android
         run: npx expo prebuild --platform android --clean
 
-      - name: Build APK
+      - name: Build APK & AAB
         working-directory: android
-        run: ./gradlew assembleRelease
+        run: |
+          echo $ANDROID_KEYSTORE_BASE64 | base64 -d > app/semih007.keystore
+          ./gradlew assembleRelease bundleRelease \
+            -Pandroid.injected.signing.store.file=semih007.keystore \
+            -Pandroid.injected.signing.store.password=$ANDROID_KEYSTORE_PASSWORD \
+            -Pandroid.injected.signing.key.alias=$ANDROID_KEY_ALIAS \
+            -Pandroid.injected.signing.key.password=$ANDROID_KEY_PASSWORD
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
-      - name: Upload APK
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: not-hesaplama-apk
-          path: android/app/build/outputs/apk/release/*.apk
+          name: not-hesaplama-builds
+          path: |
+            android/app/build/outputs/apk/release/*.apk
+            android/app/build/outputs/bundle/release/*.aab
           retention-days: 30
