@@ -19,14 +19,14 @@ export default function AboutScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.backgroundRoot }]}
       contentContainerStyle={{
-        paddingTop: 60,
+        paddingTop: 50,
         paddingBottom: insets.bottom + Spacing.xl,
         paddingHorizontal: Spacing.lg,
       }}
       showsVerticalScrollIndicator={false}
     >
       <Animated.View entering={FadeInDown.delay(100).duration(400)}>
-        <View style={[styles.headerSection, { marginBottom: 20 }]}>
+        <View style={[styles.headerSection, { marginBottom: 10 }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
             Sürüm 2.2.0
