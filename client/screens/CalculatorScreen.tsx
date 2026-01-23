@@ -265,7 +265,7 @@ export default function CalculatorScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.backgroundRoot }]}
       contentContainerStyle={{
-        paddingTop: Spacing.xl,
+        paddingTop: headerHeight + Spacing.xl,
         paddingBottom: insets.bottom + Spacing["3xl"],
         paddingHorizontal: Spacing.lg,
       }}

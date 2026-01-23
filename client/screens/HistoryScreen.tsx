@@ -54,10 +54,7 @@ export default function HistoryScreen() {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
       <ScrollView 
-        contentContainerStyle={[
-          styles.scrollContent,
-          { paddingTop: 20 }
-        ]}
+        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         {history.length === 0 ? (
