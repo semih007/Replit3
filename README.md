@@ -5,7 +5,7 @@ vize ve final notlarından ortalama hesaplama dersten başarısız ve başarıl�
  final notu > 30 (Önlisans)/ 35 (Lisans) (Geçme şartı)
 
  DNO > 49 (DİREKT GEÇER)
- DNO > 39 (DERS BAŞARISIZ)
+ DNO < 40 (DERS BAŞARISIZ)
  39 < DNO < 50 (Şartlı geçebilirsin)
 
 Önemli Not!!!    Kurallar Konya Teknik Üniversitesi Önlisans şartları varsayıladır. Final notu barajı için 30, 35 ve diğer olarak 3 seçenek vardır. diğer adımında istediğiniz baraj puanını seçebilirsiniz.
