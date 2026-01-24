@@ -101,7 +101,7 @@ export default function AboutScreen() {
               <ThemedText
                 style={[styles.ruleText, { color: colors.textSecondary }]}
               >
-                49 {">"} Ortalama {">"} 39: Şartlı Geçtin
+                50 {">"} Ortalama {">"} 39: Şartlı Geçtin
               </ThemedText>
             </View>
             <View style={styles.ruleItem}>
