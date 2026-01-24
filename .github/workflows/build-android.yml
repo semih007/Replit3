@@ -42,20 +42,7 @@ jobs:
 
       - name: Prebuild Android
         run: npx expo prebuild --platform android --clean
-
-      - - name: Enable ProGuard/R8
-  run: |
-    # build.gradle dosyasında minifyEnabled'ı true yap
-    sed -i 's/minifyEnabled false/minifyEnabled true/g' android/app/build.gradle
     
-    # ProGuard kurallarını oluştur
-    echo "-keep class com.facebook.react.** { *; }
-    -keep class com.facebook.yoga.** { *; }
-    -keep class com.facebook.stacktrace.** { *; }
-    -dontwarn com.facebook.react.**
-    -keep class com.facebook.hermes.unicode.** { *; }
-    -keep class com.facebook.jni.** { *; }" > android/app/proguard-rules.pro
-
       - name: Build APK
         working-directory: android
         run: |
