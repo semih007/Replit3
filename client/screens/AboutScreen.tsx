@@ -26,7 +26,7 @@ export default function AboutScreen() {
     <ScrollView
       style={[styles.container, { backgroundColor: theme.backgroundRoot }]}
       contentContainerStyle={{
-        paddingTop: 96,
+        paddingTop: 99,
         paddingBottom: insets.bottom + Spacing.xl,
         paddingHorizontal: Spacing.lg,
       }}
@@ -36,7 +36,7 @@ export default function AboutScreen() {
         <View style={[styles.headerSection, { marginBottom: 5 }]}>
           <ThemedText style={styles.appName}>Not Hesaplama</ThemedText>
           <ThemedText style={[styles.version, { color: colors.textSecondary }]}>
-            Sürüm 2.2.4
+            Sürüm 2.2.5
           </ThemedText>
         </View>
       </Animated.View>
