@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     padding: Spacing.md,
-    paddingBottom: 15,
+    paddingBottom: 35,
   },
   clearButtonText: {
     color: '#FFFFFF',
