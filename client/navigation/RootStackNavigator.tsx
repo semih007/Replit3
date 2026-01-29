@@ -3,12 +3,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CalculatorScreen from "@/screens/CalculatorScreen";
 import AboutScreen from "@/screens/AboutScreen";
 import HistoryScreen from "@/screens/HistoryScreen";
+import SavedCoursesScreen from "@/screens/SavedCoursesScreen";
 import { useScreenOptions } from "@/hooks/useScreenOptions";
 
 export type RootStackParamList = {
   Calculator: undefined;
   About: undefined;
   History: undefined;
+  SavedCourses: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -37,6 +39,13 @@ export default function RootStackNavigator() {
         component={HistoryScreen}
         options={{
           headerTitle: "Gecmis",
+        }}
+      />
+      <Stack.Screen
+        name="SavedCourses"
+        component={SavedCoursesScreen}
+        options={{
+          headerTitle: "Kayitli Dersler",
         }}
       />
     </Stack.Navigator>

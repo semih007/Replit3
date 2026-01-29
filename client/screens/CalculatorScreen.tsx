@@ -12,7 +12,6 @@ import { useHeaderHeight } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Feather } from "@expo/vector-icons";
-import * as Haptics from "expo-haptics";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -80,7 +79,7 @@ export default function CalculatorScreen() {
     if (!limit || limit.trim() === "") return;
     try {
       await AsyncStorage.setItem("user_default_limit", limit);
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
     } catch (e) {
       console.error("Error saving default limit", e);
     }
@@ -88,6 +87,20 @@ export default function CalculatorScreen() {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      headerLeft: () => (
+        <Pressable 
+          onPress={() => {
+            navigation.navigate("SavedCourses");
+          }}
+          hitSlop={25}
+          style={({ pressed }) => [
+            styles.headerButton,
+            { opacity: pressed ? 0.5 : 1, marginLeft: 4 }
+          ]}
+        >
+          <Feather name="book" size={28} color={theme.text} />
+        </Pressable>
+      ),
       headerRight: () => (
         <View style={styles.headerRightContainer}>
           <Pressable 
@@ -154,12 +167,12 @@ export default function CalculatorScreen() {
     }
     
     if (showCustomLimit && (isNaN(limitValue) || limitValue < 0 || limitValue > 100)) {
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+  
         return;
     }
 
     if (hasError) {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+
       return;
     }
 
@@ -226,11 +239,10 @@ export default function CalculatorScreen() {
     );
 
     if (status === "pass") {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
     } else if (status === "conditional") {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
     } else {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+
     }
   }, [midtermGrade, finalGrade, finalLimit, customLimit, showCustomLimit, colors]);
 
@@ -240,7 +252,7 @@ export default function CalculatorScreen() {
     setResult(null);
     setMidtermError("");
     setFinalError("");
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
   }, []);
 
   const handlePressIn = () => {
@@ -359,7 +371,7 @@ export default function CalculatorScreen() {
                     setShowCustomLimit(false);
                     saveUserDefaultLimit(val);
                   }
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              
                 }}
                 style={[
                   styles.limitButton,
