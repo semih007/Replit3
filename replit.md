@@ -11,8 +11,17 @@ This is a Turkish university grade calculator mobile application built with Reac
   - Average > 49: Direct pass
   - Average 40-49: Conditional pass
   - Average < 40: Fail
+- Save courses with names and grades
+- Edit and delete saved courses
+- Color-coded course list based on pass/fail status
 
 The app uses color-coded results (green=pass, yellow=conditional, red=fail) for instant visual feedback.
+
+**Screens:**
+- Calculator Screen: Main grade calculation with header buttons (left: saved courses, right: history and about)
+- Saved Courses Screen: Manage saved courses with add/edit/delete functionality
+- History Screen: View calculation history
+- About Screen: App information
 
 ### GitHub Actions Workflow
 - **File**: `.github/workflows/build-android.yml`
@@ -31,17 +40,17 @@ Preferred communication style: Simple, everyday language.
 
 ### Frontend Architecture
 - **Framework**: React Native with Expo SDK 54
-- **Navigation**: React Navigation (native-stack) with a simple two-screen structure (Calculator and About)
+- **Navigation**: React Navigation (native-stack) with four screens (Calculator, SavedCourses, History, About)
 - **State Management**: Local React state (useState) for form inputs and calculation results
 - **Styling**: StyleSheet with a custom theme system supporting light/dark modes
-- **Animations**: React Native Reanimated for smooth UI transitions and haptic feedback via expo-haptics
+- **Animations**: React Native Reanimated for smooth UI transitions (haptics disabled)
 - **Path Aliases**: `@/` maps to `./client`, `@shared/` maps to `./shared`
 
 ### Project Structure
 ```
 client/           # React Native frontend
 ├── components/   # Reusable UI components (Button, Card, ThemedText, etc.)
-├── screens/      # Screen components (CalculatorScreen, AboutScreen)
+├── screens/      # Screen components (CalculatorScreen, SavedCoursesScreen, HistoryScreen, AboutScreen)
 ├── navigation/   # Stack navigator setup
 ├── hooks/        # Custom hooks (useTheme, useScreenOptions)
 ├── constants/    # Theme colors, spacing, typography
