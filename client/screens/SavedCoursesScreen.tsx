@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useHeaderHeight } from "@react-navigation/elements";
+import { useFocusEffect } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
@@ -41,10 +42,28 @@ export default function SavedCoursesScreen() {
   const [courseName, setCourseName] = useState("");
   const [midterm, setMidterm] = useState("");
   const [final, setFinal] = useState("");
+  const [finalLimit, setFinalLimit] = useState(30);
 
-  useEffect(() => {
-    loadCourses();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadFinalLimit();
+      loadCourses();
+    }, [])
+  );
+
+  const loadFinalLimit = async () => {
+    try {
+      const savedLimit = await AsyncStorage.getItem("user_default_limit");
+      if (savedLimit) {
+        const limitValue = parseFloat(savedLimit);
+        if (!isNaN(limitValue) && limitValue >= 0 && limitValue <= 100) {
+          setFinalLimit(limitValue);
+        }
+      }
+    } catch (e) {
+      console.error("Error loading final limit", e);
+    }
+  };
 
   const loadCourses = async () => {
     try {
@@ -66,11 +85,11 @@ export default function SavedCoursesScreen() {
     }
   };
 
-  const calculateStatus = (midtermVal: number, finalVal: number) => {
+  const calculateStatus = (midtermVal: number, finalVal: number, limit: number = finalLimit) => {
     const average = midtermVal * 0.4 + finalVal * 0.6;
     let status: "pass" | "conditional" | "fail";
     
-    if (finalVal < 30) {
+    if (finalVal < limit) {
       status = "fail";
     } else if (average < 40) {
       status = "fail";
@@ -177,6 +196,18 @@ export default function SavedCoursesScreen() {
     }
   };
 
+  const getCourseStatus = (course: SavedCourse) => {
+    const midtermVal = parseFloat(course.midterm);
+    const finalVal = parseFloat(course.final);
+    
+    if (!isNaN(midtermVal) && !isNaN(finalVal) && 
+        midtermVal >= 0 && midtermVal <= 100 && 
+        finalVal >= 0 && finalVal <= 100) {
+      return calculateStatus(midtermVal, finalVal, finalLimit);
+    }
+    return { average: null, status: null };
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: theme.backgroundRoot }]}>
       <ScrollView
@@ -198,70 +229,73 @@ export default function SavedCoursesScreen() {
             </ThemedText>
           </View>
         ) : (
-          courses.map((course, index) => (
-            <Animated.View 
-              key={course.id}
-              entering={FadeInDown.delay(index * 100).duration(300)}
-            >
-              <Pressable
-                onPress={() => openEditModal(course)}
-                style={[
-                  styles.courseCard,
-                  { 
-                    backgroundColor: colors.backgroundDefault,
-                    borderLeftColor: getStatusColor(course.status),
-                    borderLeftWidth: 4,
-                  }
-                ]}
+          courses.map((course, index) => {
+            const courseStatus = getCourseStatus(course);
+            return (
+              <Animated.View 
+                key={course.id}
+                entering={FadeInDown.delay(index * 100).duration(300)}
               >
-                <View style={styles.courseHeader}>
-                  <ThemedText style={[styles.courseName, { color: theme.text }]}>
-                    {course.name}
-                  </ThemedText>
-                  <Pressable
-                    onPress={() => handleDelete(course.id)}
-                    hitSlop={15}
-                    style={styles.deleteButton}
-                  >
-                    <Feather name="trash-2" size={18} color={colors.error} />
-                  </Pressable>
-                </View>
+                <Pressable
+                  onPress={() => openEditModal(course)}
+                  style={[
+                    styles.courseCard,
+                    { 
+                      backgroundColor: colors.backgroundDefault,
+                      borderLeftColor: getStatusColor(courseStatus.status),
+                      borderLeftWidth: 4,
+                    }
+                  ]}
+                >
+                  <View style={styles.courseHeader}>
+                    <ThemedText style={[styles.courseName, { color: theme.text }]}>
+                      {course.name}
+                    </ThemedText>
+                    <Pressable
+                      onPress={() => handleDelete(course.id)}
+                      hitSlop={15}
+                      style={styles.deleteButton}
+                    >
+                      <Feather name="trash-2" size={18} color={colors.error} />
+                    </Pressable>
+                  </View>
 
-                <View style={styles.gradesRow}>
-                  <View style={styles.gradeItem}>
-                    <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>
-                      Vize
-                    </ThemedText>
-                    <ThemedText style={[styles.gradeValue, { color: theme.text }]}>
-                      {course.midterm || "-"}
-                    </ThemedText>
+                  <View style={styles.gradesRow}>
+                    <View style={styles.gradeItem}>
+                      <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>
+                        Vize
+                      </ThemedText>
+                      <ThemedText style={[styles.gradeValue, { color: theme.text }]}>
+                        {course.midterm || "-"}
+                      </ThemedText>
+                    </View>
+                    <View style={styles.gradeItem}>
+                      <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>
+                        Final
+                      </ThemedText>
+                      <ThemedText style={[styles.gradeValue, { color: theme.text }]}>
+                        {course.final || "-"}
+                      </ThemedText>
+                    </View>
+                    <View style={styles.gradeItem}>
+                      <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>
+                        Ortalama
+                      </ThemedText>
+                      <ThemedText style={[styles.gradeValue, { color: theme.text }]}>
+                        {courseStatus.average !== null ? courseStatus.average.toFixed(2) : "-"}
+                      </ThemedText>
+                    </View>
                   </View>
-                  <View style={styles.gradeItem}>
-                    <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>
-                      Final
-                    </ThemedText>
-                    <ThemedText style={[styles.gradeValue, { color: theme.text }]}>
-                      {course.final || "-"}
-                    </ThemedText>
-                  </View>
-                  <View style={styles.gradeItem}>
-                    <ThemedText style={[styles.gradeLabel, { color: colors.textSecondary }]}>
-                      Ortalama
-                    </ThemedText>
-                    <ThemedText style={[styles.gradeValue, { color: theme.text }]}>
-                      {course.average !== null ? course.average.toFixed(2) : "-"}
-                    </ThemedText>
-                  </View>
-                </View>
 
-                <View style={[styles.statusBadge, { backgroundColor: getStatusColor(course.status) + "20" }]}>
-                  <ThemedText style={[styles.statusText, { color: getStatusColor(course.status) }]}>
-                    {getStatusText(course.status)}
-                  </ThemedText>
-                </View>
-              </Pressable>
-            </Animated.View>
-          ))
+                  <View style={[styles.statusBadge, { backgroundColor: getStatusColor(courseStatus.status) + "20" }]}>
+                    <ThemedText style={[styles.statusText, { color: getStatusColor(courseStatus.status) }]}>
+                      {getStatusText(courseStatus.status)}
+                    </ThemedText>
+                  </View>
+                </Pressable>
+              </Animated.View>
+            );
+          })
         )}
       </ScrollView>
 
